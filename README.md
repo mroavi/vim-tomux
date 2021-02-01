@@ -3,32 +3,48 @@ tomux
 
 A minimalistic plugin for sending text to a tmux session.
 
+Installation
+------------
+
+Use your favorite package manager:
+
+#### Using [vim-plug](https://github.com/junegunn/vim-plug)
+
+```vim
+Plug 'mroavi/vim-tomux'
+```
+
+
+#### Using [Vundle](https://github.com/VundleVim/Vundle.vim)
+
+```vim
+Plugin 'mroavi/vim-tomux'
+```
+
 Usage
 -----
 
-Configure the tmux *socket name* and *target pane* in your configuration file, for
+Configure tmux's *socket name* and *target pane* in your configuration file, for
 example:
 
-```
+```vim
 let g:tomux_config = {"socket_name": "default", "target_pane": "{right-of}"}
 ```
 
 tomux exposes two `<Plug>` mappings to send motions and selections:
 
-
 - `<Plug>TomuxMotionSend` -> Send {count}{motion}.
 - `<Plug>TomuxVisualSend` -> Send {visual} text.
 
-
 You need to map these in your configuration file, for example:
 
-```
+```vim
 nmap <buffer> s <Plug>TomuxMotionSend
 xmap <buffer> s <Plug>TomuxVisualSend
 ```
 
 To send "a" paragraph, type `sap` in normal mode, or alternatively,
-type `vap` to first select the "a" paragraph and then send it with `s`.
+type `vap` to first select the paragraph and then `s` to send it.
 
 A few useful text-objects/motions that you can use with the `s` operator include:
 
@@ -40,14 +56,14 @@ Any of these operations can be preceded by a `{count}`.
 
 You can use the mapping below to send lines with (the more vim-oriented way) `ss` 
 
-```
+```vim
 omap s _
 ```
 
 You can also use the `s` operator together with custom text-objects. For example,
 here is the definition of a custom text-object that selects the entire document:
 
-```
+```vim
 " Custom 'inner document' text object (from first line to last)
 onoremap <silent> id :<c-u>normal! ggVG<cr>
 xnoremap <silent> id :<c-u>normal! ggVG<cr>
@@ -70,20 +86,20 @@ clipboard to the REPL. To enable this option, assign a string to
 runs the content of the clipboard quietly in the REPL.
 For example, to enable this functionality with ipython you could define: 
 
-```
+```vim
 let b:tomux_clipboard_paste = "paste -q"
 ```
 
 To enable this in a Julia REPL use:
 
-```
+```vim
 let b:tomux_clipboard_paste = "include_string(Main, clipboard())"
 ```
 
 Options
 -------
 
-#### b:slime_default_config
+#### g:slime_default_config
 
 A dictionary with tmux's *socket name* and *target pane*. For information on
 these options and their possible values see the [tmux
