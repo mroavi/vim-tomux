@@ -80,21 +80,20 @@ this approach is that every character sent is echoed, which can be annoying if
 you are sending large portions of text.
 
 To solve this, tomux provides an option to communicate over the clipboard
-instead. Some programming languages have a method to paste text from the
-clipboard to the REPL. To enable this option, assign a string to
+instead. Several programming languages provide a method to execute code from the
+clipboard in the REPL. To enable this option, assign a string to
 `b:tomux_clipboard_paste`. This string should be the method that pastes and
-runs the content of the clipboard quietly in the REPL.
-For example, to enable this functionality with ipython you could define: 
-
+runs the content of the clipboard quietly in the REPL. For example, to enable
+this functionality with ipython, add the line below inside Python's filetype
+plugin file: 
 ```vim
 let b:tomux_clipboard_paste = "paste -q"
 ```
-
-To enable this in a Julia REPL use:
-
+or with Julia, add:
 ```vim
 let b:tomux_clipboard_paste = "include_string(Main, clipboard())"
 ```
+inside Julia's filetype plugin file.
 
 Options
 -------
