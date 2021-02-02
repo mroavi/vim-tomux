@@ -43,8 +43,9 @@ nmap <buffer> s <Plug>TomuxMotionSend
 xmap <buffer> s <Plug>TomuxVisualSend
 ```
 
-To send "a" paragraph, type `sap` in normal mode, or alternatively,
-type `vap` to first select the paragraph and then `s` to send it.
+Open a tmux pane to the right of the pane running vim. To send "a" paragraph,
+type `sap` in normal mode, or alternatively, type `vap` to first select the
+paragraph and then `s` to send it.
 
 A few useful text-objects/motions that you can use with the `s` operator include:
 
