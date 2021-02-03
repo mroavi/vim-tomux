@@ -48,6 +48,8 @@ function! s:tmuxcommand(config, args)
   return system("tmux " . l:socket_option . " " . shellescape(l:socket) . " " . a:args)
 endfunction
 
+command -nargs=1 TomuxSend call s:tmuxsend(g:tomux_config, <args>)
+
 noremap <SID>Operator :<c-u>call <SID>save_winview()<cr>:set opfunc=<SID>send_op<cr>g@
 
 noremap <unique> <script> <silent> <Plug>TomuxVisualSend :<c-u>call <SID>send_op(visualmode(), 1)<cr>
