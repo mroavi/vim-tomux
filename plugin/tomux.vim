@@ -11,13 +11,13 @@ function! s:send_op(type, ...) abort
   let &selection = "inclusive"
   " Store the motion/text-object in the unnamed register by yanking it
   if a:0
-    silent exe "normal! `<" . a:type . '`>y'
+    silent exe "keepjumps normal! `<" . a:type . '`>y'
   elseif a:type == 'line'
-    silent exe "normal! '[V']y"
+    silent exe "keepjumps normal! '[V']y"
   elseif a:type == 'block'
-    silent exe "normal! `[\<C-V>`]\y"
+    silent exe "keepjumps normal! `[\<C-V>`]\y"
   else
-    silent exe "normal! `[v`]y"
+    silent exe "keepjumps normal! `[v`]y"
   endif
   " If defined, send `b:tomux_clipboard_paste` to tmux instead of the motoin/text-object
   if exists("b:tomux_clipboard_paste")
