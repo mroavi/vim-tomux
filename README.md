@@ -81,8 +81,8 @@ approach is that every character sent is echoed in the REPL, which can be
 annoying if you are sending large chunks of code.
 
 To solve this, tomux provides an option to communicate over the clipboard
-instead. Several programming languages provide a method to execute code from the
-clipboard in the REPL. To enable this option, assign a string to
+instead. Several programming languages provide a method to run the contents of
+the clipboard in the REPL. To enable this option, assign a string to
 `b:tomux_clipboard_paste`. This string should be the method that pastes and
 runs the content of the clipboard quietly in the REPL. For example, to enable
 this functionality with ipython, add the line below inside Python's filetype
