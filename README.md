@@ -75,10 +75,10 @@ Now you can type `sid` to send the entire buffer.
 Clipboard
 ---------
 
-Sending code to a REPL is a common use case of tomux. By default, tomux uses
-an intermediary file to communicate with tmux. One of the drawbacks of using
-this approach is that every character sent is echoed, which can be annoying if
-you are sending large portions of text.
+Sending code to a REPL is a common use case of tomux. By default, tomux uses an
+intermediary file to communicate with tmux. One of the drawbacks of using this
+approach is that every character sent is echoed in the REPL, which can be
+annoying if you are sending large chunks of code.
 
 To solve this, tomux provides an option to communicate over the clipboard
 instead. Several programming languages provide a method to execute code from the
