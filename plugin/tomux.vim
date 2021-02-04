@@ -49,6 +49,7 @@ function! s:tmuxcommand(config, args)
 endfunction
 
 command -nargs=1 TomuxSend call s:tmuxsend(g:tomux_config, <args>)
+command -nargs=1 TomuxCommand call s:tmuxcommand(g:tomux_config, <args>)
 
 noremap <SID>Operator :<c-u>call <SID>save_winview()<cr>:set opfunc=<SID>send_op<cr>g@
 
