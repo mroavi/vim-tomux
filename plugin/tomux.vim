@@ -5,6 +5,7 @@ let g:loaded_tomux = 1
 
 let g:tomux_config = get(g:, "tomux_config", {"socket_name": "default", "target_pane": "{right-of}"})
 let g:tomux_paste_file = get(g:, "tomux_paste_file", expand("$HOME/.tomux_paste"))
+let g:tomux_use_clipboard = get(g:, "tomux_use_clipboard", 1)
 
 function! s:send_op(type, ...) abort
   let sel_opt = &selection " backup
@@ -19,8 +20,9 @@ function! s:send_op(type, ...) abort
   else
     silent exe "keepjumps normal! `[v`]y"
   endif
-  " If defined, send `b:tomux_clipboard_paste` to tmux instead of the motoin/text-object
-  if exists("b:tomux_clipboard_paste")
+  " If both `g:tomux_use_clipboard` and `b:tomux_clipboard_paste` are defined, 
+  " then send `b:tomux_clipboard_paste` to tmux instead of the motion/text-object
+  if g:tomux_use_clipboard && exists("b:tomux_clipboard_paste")
     call setreg('+', @", 'V') " set the yanked text in the clipboard register
     call setreg('"', b:tomux_clipboard_paste, 'V')
   end
@@ -48,8 +50,17 @@ function! s:tmuxcommand(config, args)
   return system("tmux " . l:socket_option . " " . shellescape(l:socket) . " " . a:args)
 endfunction
 
+function! s:useclipboardtoggle() abort
+  if g:tomux_use_clipboard
+    let g:tomux_use_clipboard = 0
+  else
+    let g:tomux_use_clipboard = 1
+  endif
+endfunction
+
 command -nargs=1 TomuxSend call s:tmuxsend(g:tomux_config, <args>)
 command -nargs=1 TomuxCommand call s:tmuxcommand(g:tomux_config, <args>)
+command -bar TomuxUseClipboardToggle call s:useclipboardtoggle()
 
 noremap <SID>Operator :<c-u>call <SID>save_winview()<cr>:set opfunc=<SID>send_op<cr>g@
 
