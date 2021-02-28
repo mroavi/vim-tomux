@@ -20,13 +20,14 @@ function! s:send_op(type, ...) abort
   else
     silent exe "keepjumps normal! `[v`]y"
   endif
+  call setreg('"', substitute(@", "\n\\+", "\n", "g"), 'v') " remove empty lines
   " If both `g:tomux_use_clipboard` and `b:tomux_clipboard_paste` are defined, 
   " then send `b:tomux_clipboard_paste` to tmux instead of the motion/text-object
   if g:tomux_use_clipboard && exists("b:tomux_clipboard_paste")
     call setreg('+', @", 'V') " set the yanked text in the clipboard register
     call setreg('"', b:tomux_clipboard_paste, 'V')
   end
-  call s:tmuxsend(g:tomux_config, @") " Send unnamed register's content using a file
+  call s:tmuxsend(g:tomux_config, @") " send unnamed register's content using a file
   let &selection = sel_opt
   if exists("s:winview")
     call winrestview(s:winview)
