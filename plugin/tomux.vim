@@ -54,8 +54,10 @@ endfunction
 function! s:useclipboardtoggle() abort
   if g:tomux_use_clipboard
     let g:tomux_use_clipboard = 0
+    echo "let g:tomux_use_clipboard = 0"
   else
     let g:tomux_use_clipboard = 1
+    echo "let g:tomux_use_clipboard = 1"
   endif
 endfunction
 
