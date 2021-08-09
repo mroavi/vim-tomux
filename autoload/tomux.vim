@@ -36,6 +36,7 @@ endfunction
 
 function! tomux#tmuxsend(config, text)
 	call system("cat > " . g:tomux_paste_file, a:text)
+  call tomux#tmuxcommand(a:config, "send-keys -t " . shellescape(a:config["target_pane"]) . " -X cancel")
 	call tomux#tmuxcommand(a:config, "load-buffer " . g:tomux_paste_file)
 	call tomux#tmuxcommand(a:config, "paste-buffer -d -t " . shellescape(a:config["target_pane"]))
 endfunction
