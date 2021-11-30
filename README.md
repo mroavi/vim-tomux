@@ -6,19 +6,17 @@ A minimalistic plugin for sending text to a tmux session.
 Installation
 ------------
 
-Use your favorite package manager:
-
-#### Using [vim-plug](https://github.com/junegunn/vim-plug)
+Using [vim-plug](https://github.com/junegunn/vim-plug)
 
 ```vim
 Plug 'mroavi/vim-tomux'
 ```
 
 
-#### Using [Vundle](https://github.com/VundleVim/Vundle.vim)
+Using [packer.nvim](https://github.com/wbthomason/packer.nvim)
 
 ```vim
-Plugin 'mroavi/vim-tomux'
+use 'mroavi/vim-tomux'
 ```
 
 Usage
@@ -85,12 +83,12 @@ instead. Several programming languages provide a method to run the contents of
 the clipboard in the REPL. To enable this option, assign a string to
 `b:tomux_clipboard_paste`. This string should be the method that pastes and
 runs the content of the clipboard quietly in the REPL. For example, to enable
-this functionality with ipython, add the line below inside Python's filetype
-plugin file: 
+this functionality for IPython, add the line below inside Python's filetype
+plugin file
 ```vim
 let b:tomux_clipboard_paste = "paste -q"
 ```
-or with Julia, add:
+For Julia, add
 ```vim
 let b:tomux_clipboard_paste = "include_string(Main, clipboard())"
 ```
@@ -119,7 +117,7 @@ Default: empty
 
 Path to an intermediary file that is used to transfer data to tmux. 
 
-WARNING: this file is not removed by tomux.
+*WARNING: this file is not removed by tomux.*
 
 Default: `g:tomux_paste_file = "$HOME/.tomux_paste"`
  
