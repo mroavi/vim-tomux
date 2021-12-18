@@ -2,7 +2,7 @@ let g:tomux_config = get(g:, "tomux_config", {"socket_name": "default", "target_
 let g:tomux_paste_file = get(g:, "tomux_paste_file", expand("$HOME/.tomux_paste"))
 let g:tomux_use_clipboard = get(g:, "tomux_use_clipboard", 1)
 
-function! tomux#send_op(type, ...) abort
+function! tomux#send_op(type, config, ...) abort
 	let sel_opt = &selection " backup
 	let &selection = "inclusive"
 	" Store the motion/text-object in the unnamed register by yanking it
@@ -22,7 +22,7 @@ function! tomux#send_op(type, ...) abort
 		call setreg('+', @", 'V') " set the yanked text in the clipboard register
 		call setreg('"', b:tomux_clipboard_paste, 'V')
 	end
-	call tomux#tmuxsend(g:tomux_config, @") " send unnamed register's content using a file
+	call tomux#tmuxsend(a:config, @") " send unnamed register's content using a file
 	let &selection = sel_opt
 	if exists("s:winview")
 		call winrestview(s:winview)
