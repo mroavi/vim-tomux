@@ -26,7 +26,7 @@ Configure tmux's *socket name* and *target pane* in your configuration file, for
 example:
 
 ```vim
-let g:tomux_config = {"socket_name": "default", "target_pane": "{right-of}"}
+let b:tomux_config = {"socket_name": "default", "target_pane": "{right-of}"}
 ```
 
 tomux exposes two `<Plug>` mappings to send motions and selections:
@@ -97,13 +97,15 @@ inside Julia's filetype plugin file.
 Options
 -------
 
-#### g:slime_default_config
+#### b:tomux_config
 
 A dictionary with tmux's *socket name* and *target pane*. For information on
 these options and their possible values see the [tmux
 manual](http://man.openbsd.org/OpenBSD-current/man1/tmux.1#_last__2).
 
-Default: `g:slime_default_config = {"socket_name": "default", "target_pane": "{right-of}"}`
+Example: `b:tomux_config = {"socket_name": "default", "target_pane": "{right-of}"}`
+
+Default: empty
 
 #### b:tomux_clipboard_paste
 

@@ -1,4 +1,3 @@
-let g:tomux_config = get(g:, "tomux_config", {"socket_name": "default", "target_pane": "{right-of}"})
 let g:tomux_paste_file = get(g:, "tomux_paste_file", expand("$HOME/.tomux_paste"))
 let g:tomux_use_clipboard = get(g:, "tomux_use_clipboard", 1)
 
