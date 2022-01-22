@@ -34,6 +34,7 @@ function! tomux#save_winview()
 endfunction
 
 function! tomux#tmuxsend(config, text)
+  if !exists("$TMUX") | echom("fatal: not running in a tmux session") | return | endif
 	call system("cat > " . g:tomux_paste_file, a:text)
   call tomux#tmuxcommand(a:config, "send-keys -t " . shellescape(a:config["target_pane"]) . " -X cancel")
 	call tomux#tmuxcommand(a:config, "load-buffer " . g:tomux_paste_file)
@@ -41,6 +42,7 @@ function! tomux#tmuxsend(config, text)
 endfunction
 
 function! tomux#tmuxcommand(config, args)
+  if !exists("$TMUX") | echom("fatal: not running in a tmux session") | return | endif
 	let l:socket = a:config["socket_name"]
 	let l:socket_option = l:socket[0] ==? "/" ? "-S" : "-L"
 	return system("tmux " . l:socket_option . " " . shellescape(l:socket) . " " . a:args)
