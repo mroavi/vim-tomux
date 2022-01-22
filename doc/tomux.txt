@@ -74,7 +74,7 @@ b:tomux_config                                                    *b:tomux_confi
         tmux socket name and target pane. For more information on these options 
         and their possible values see the tmux {manual}{1}.
 
-        Default: {"socket_name": "default", "target_pane": "{right-of}"}
+        Default: empty
 
                 {1} http://man.openbsd.org/OpenBSD-current/man1/tmux.1#_last__2
 
