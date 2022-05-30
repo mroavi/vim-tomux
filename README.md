@@ -29,10 +29,10 @@ example:
 let b:tomux_config = {"socket_name": "default", "target_pane": "{right-of}"}
 ```
 
-tomux exposes two `<Plug>` mappings to send motions and selections:
+*tomux* exposes two `<Plug>` mappings to send motions and selections:
 
-- `<Plug>TomuxMotionSend` -> Send {count}{motion}.
-- `<Plug>TomuxVisualSend` -> Send {visual} text.
+- `<Plug>TomuxMotionSend` → Send {count}{motion}.
+- `<Plug>TomuxVisualSend` → Send {visual} text.
 
 You need to map these in your configuration file, for example:
 
@@ -42,25 +42,29 @@ xmap <buffer> s <Plug>TomuxVisualSend
 ```
 
 Open a tmux pane to the right of the pane running vim. To send "a" paragraph,
-type `sap` in normal mode, or alternatively, type `vap` to first select the
-paragraph and then `s` to send it.
+type <kbd>s</kbd><kbd>a</kbd><kbd>p</kbd> in normal mode, or alternatively,
+type <kbd>v</kbd><kbd>a</kbd><kbd>p</kbd> to first select the paragraph and
+then <kbd>s</kbd> to send it.
 
-A few useful text-objects/motions that you can use with the `s` operator include:
+A few useful text-objects/motions that you can use with the <kbd>s</kbd>
+operator include:
 
-- `sap` -> "a" paragraph
-- `s_`  -> the current line
-- `sj`  -> the current line and the one below
+- <kbd>s</kbd><kbd>a</kbd><kbd>p</kbd> → send "a" paragraph
+- <kbd>s</kbd><kbd>_</kbd> → send the current line
+- <kbd>s</kbd><kbd>j</kbd> → send the current line and the one below
 
 Any of these operations can be preceded by a `{count}`.
 
-You can use the mapping below to send lines with (the more vim-oriented way) `ss` 
+You can use the mapping below to send lines with (the more vim-oriented way)
+<kbd>s</kbd><kbd>s</kbd> 
 
 ```vim
 omap s _
 ```
 
-You can also use the `s` operator together with custom text-objects. For example,
-here is the definition of a custom text-object that selects the entire document:
+You can also use the <kbd>s</kbd> operator together with custom text-objects.
+For example, here is the definition of a custom text-object that selects the
+entire document:
 
 ```vim
 " Custom 'inner document' text object (from first line to last)
@@ -68,17 +72,18 @@ onoremap <silent> id :<c-u>normal! ggVG<cr>
 xnoremap <silent> id :<c-u>normal! ggVG<cr>
 ```
 
-Now you can type `sid` to send the entire buffer.
+Now you can type <kbd>s</kbd><kbd>i</kbd><kbd>d</kbd> to send the entire
+buffer.
 
 Clipboard
 ---------
 
-Sending code to a REPL is a common use case of tomux. By default, tomux uses an
-intermediary file to communicate with tmux. One of the drawbacks of using this
-approach is that every character sent is echoed in the REPL, which can be
-annoying if you are sending large chunks of code.
+Sending code to a REPL is a common use case of *tomux*. By default, *tomux*
+uses an intermediary file to communicate with tmux. One of the drawbacks of
+using this approach is that every character sent is echoed in the REPL, which
+can be annoying if you are sending large chunks of code.
 
-To solve this, tomux provides an option to communicate over the clipboard
+To solve this, *tomux* provides an option to communicate over the clipboard
 instead. Several programming languages provide a method to run the contents of
 the clipboard in the REPL. To enable this option, assign a string to
 `b:tomux_clipboard_paste`. This string should be the method that pastes and
