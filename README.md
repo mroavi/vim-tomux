@@ -1,7 +1,7 @@
 tomux
 =====
 
-A minimalistic plugin for sending text with *tmux*.
+A minimalistic plugin for sending text to *tmux*.
 
 Installation
 ------------
